@@ -1,0 +1,54 @@
+<div class="container main-container">
+
+    <h1>Lista de Usuarios</h1>
+
+    <p>
+        <a class="btn btn-info" [routerLink]="['/cadastro']">Novo Usuario</a>
+    </p>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Nascimento</th>
+                <th>Cidade</th>
+                <th>CEP</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tr *ngFor="let usuario of usuarios">
+            <td>
+                {{ usuario.name }}
+            </td>
+            <td>
+                {{ usuario.email }}
+            </td>
+            <td>
+                {{ usuario.cpf }}
+            </td>
+            <td>
+                {{ usuario.dateBirth | date: 'dd/MM/yyyy' }}
+            </td>
+            <td>
+                {{ usuario.city }}
+            </td>
+            <td>
+                {{ usuario.zipCode }}
+            </td>
+            <td>
+                {{ usuario.state }}
+            </td>
+            <td class="text-right">
+                <a class="btn btn-warning" [routerLink]="['/editar',usuario.id]">
+                    <span class="fa fa-pencil"></span>
+                </a>&nbsp;
+                <a class="btn btn-danger" [routerLink]="['/excluir',usuario.id]">
+                    <span class="fa fa-trash"></span>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

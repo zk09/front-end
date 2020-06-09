@@ -1,0 +1,124 @@
+<div class="container main-container">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+        <p style="color: white"> Processando... </p>
+    </ngx-spinner>
+
+    <form novalidate (ngSubmit)="editarUsuario()" [formGroup]="editForm">
+
+        <h4>Editar usuário</h4>
+        <hr>
+
+        <div class="alert alert-danger" *ngIf="errors?.length > 0">
+            <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+            <ul>
+                <li *ngFor="let error of errors">{{ error }}</li>
+            </ul>
+        </div>
+        <input type="hidden" id="id" name="id" value="">
+
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="nome">Nome</label>
+            <div class="col-md-10">
+                <input class="form-control" id="name" type="text" placeholder="Nome (requerido)" formControlName="name" [ngClass]="{'is-invalid': displayMessage.name }" />
+                <span class="text-danger" *ngIf="displayMessage.name">
+                    <p [innerHTML]="displayMessage.name"></p>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">E-mail</label>
+            <div class="col-md-10">
+                <input class="form-control" id="email" type="text" placeholder="E-mail (requerido)" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email }" />
+                <span class="text-danger" *ngIf="displayMessage.email">
+                                <p [innerHTML]="displayMessage.email"></p>
+                            </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">CPF</label>
+            <div class="col-md-10">
+                <input class="form-control" id="cpf" type="text" placeholder="CPF (requerido)" formControlName="cpf" cpf [textMask]="{mask: MASKS.cpf.textMask}" [ngClass]="{'is-invalid': displayMessage.cpf }" />
+                <span class="text-danger" *ngIf="displayMessage.cpf">
+                    <p [innerHTML]="displayMessage.cpf"></p>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Data de Nascimento</label>
+            <div class="col-md-10">
+                <input class="form-control" id="dateBirth" type="datetime-local" placeholder="Data de Nascimento (requerido)" formControlName="dateBirth"  [ngClass]="{'is-invalid': displayMessage.dateBirth }" />
+                <span class="text-danger" *ngIf="displayMessage.dateBirth">
+                    <p [innerHTML]="displayMessage.dateBirth"></p>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="nome">Ciadade</label>
+            <div class="col-md-10">
+                <input class="form-control" id="city" type="text" placeholder="Cidade (requerido)" formControlName="city" [ngClass]="{'is-invalid': displayMessage.city }" />
+                <span class="text-danger" *ngIf="displayMessage.city">
+                    <p [innerHTML]="displayMessage.city"></p>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="nome">CEP</label>
+            <div class="col-md-10">
+                <input class="form-control" id="zipCode" type="text" placeholder="CEP (requerido)" formControlName="zipCode" zipCode [textMask]="{mask: MASKS.cep.textMask}" [ngClass]="{'is-invalid': displayMessage.zipCode }" />
+                <span class="text-danger" *ngIf="displayMessage.zipCode">
+                    <p [innerHTML]="displayMessage.zipCode"></p>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label  class="col-md-2 control-label">Estado</label>
+            <div class="col-md-10">
+                <select class="form-control" id="state" formControlName="state" [ngClass]="{ 'is-invalid': displayMessage.state }">
+                    <option value="">Estado</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                  </select>
+                <span class="text-danger" *ngIf="displayMessage.state">
+                <p [innerHTML]="displayMessage.state"></p>
+            </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Editar" class="btn btn-primary">&nbsp;
+            <a class="btn btn-info" [routerLink]="['/listar-todos']">Voltar</a>
+        </div>
+    </form>
+</div>
